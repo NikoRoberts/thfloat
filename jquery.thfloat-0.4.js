@@ -1,9 +1,10 @@
 /**
- * v0.3 THFloat plugin for jQuery
+ * v0.4 THFloat plugin for jQuery
  * http://rommelsantor.com/jquery/thfloat
  *
  * Author(s): Rommel Santor
  *            http://rommelsantor.com
+ * v0.4 Author: 
  *
  * This plugin allows you to float a table's <thead> or <tfoot> keeping it
  * in view when it would normally be scrolled out of view.
@@ -243,7 +244,16 @@ $*/
         data.clonetbl.children().remove();
 
         $this.data(ns, data);
-
+        
+        options = options || {};
+    		options.speed = options.speed || 300;
+    		options.offset = options.offset || 0;
+    		options.easing = options.easing || 'swing';
+    		options.killSwitch = options.killSwitch || 'killSwitch';
+    		options.onText = options.onText || 'Turn Slide Off';
+    		options.offText = options.offText || 'Turn Slide On';
+    		options.delay = options.delay || 0;
+      
         $(window)
           .bind('resize.'+ns, function(){
             $.each(['thfloathead','thfloatfoot'], function(i, ns){
@@ -258,17 +268,17 @@ $*/
 
               data.thwidths = thw;
               $this.data(ns, data);
-              $this.thfloat('_scroll', ns, $(data.settings.attachment));
+              $this.thfloat('_scroll', ns, $(data.settings.attachment), options);
             });
           })
           .resize()
         ;
 
         var a = $(settings.attachment).bind('scroll.'+ns, function(){
-          $this.thfloat('_scroll', ns, this);
+          $this.thfloat('_scroll', ns, this, options);
         });
 
-        $this.thfloat('_scroll', ns, a);
+        $this.thfloat('_scroll', ns, a,options);
         break;
       }
 
@@ -290,7 +300,7 @@ $*/
       });
     },
 
-    resize : function(side) {
+    resize : function(side, options) {
       var $this = $(this);
 
       $.each(['head', 'foot'], function(i, s){
@@ -313,7 +323,13 @@ $*/
             edgeheight = s == 'foot' ? ((!$el.offset() ? $el.height() : $el.innerHeight()) - data.srcblock.outerHeight() + heightOffset) : 0, 
             edge = !$el.offset() ? ($el.scrollTop() + edgeheight) : ($el.offset().top + edgeheight);
 
-        data.clonetbl.css({top:edge+'px',left:$this.offset().left+"px",width:$this.width()+'px'});
+        data.clonetbl.queue([]); //remove queued animations
+        data.clonetbl.css({
+            left: $this.offset().left + "px",
+            width: $this.width() + 'px'
+        }).animate({
+            top: edge + 'px'
+        }, options.speed, options.easing);
         $('tr', data.cloneblk).children().each(function(i){
           $(this).css({width:thw[i]+'px',maxWidth:thw[i]+'px'});
         });
@@ -343,7 +359,8 @@ $*/
       return $this;
     },
 
-    _scroll : function(ns, element) {
+    _scroll : function(ns, element,options) {
+      
       var $this = this,
           $el = $(element);
 
@@ -361,8 +378,19 @@ $*/
 
       if (!data.active) {
         if (!beyond) {
+          data.clonetbl.queue([]); //remove queued animations
           data.active = true;
-          data.clonetbl.css({display:($this.is(':visible')?'table':'none'),top:edge+'px',left:$this.offset().left+"px",marginTop:'0',marginBottom:'0',width:$this.width()+'px'});
+          data.clonetbl.css({
+              display: ($this.is(':visible') ? 'table' : 'none'),
+              left: $this.offset().left + "px",
+              marginTop: '0',
+              marginBottom: '0',
+              width: $this.width() + 'px'
+          }).animate(
+						{
+							top: edge + 'px'
+						}, options.speed, options.easing
+					);
           data.cloneblk = data.srcblock.clone(true);
           data.cloneblk.addClass('thfloat');
 
@@ -385,7 +413,7 @@ $*/
           });
           data.cloneblk.appendTo(data.clonetbl);
 
-          $this.thfloat('resize',data.settings.side);
+          $this.thfloat('resize',data.settings.side,options);
 
           data.settings.onShow && data.settings.onShow.apply(this, [data.clonetbl, data.cloneblk]);
         }
@@ -401,9 +429,10 @@ $*/
           data.cloneblk.remove();
           data.cloneblk = null;
           data.clonetbl.css({display:'none'});
+          
         }
         else
-          $this.thfloat('resize',data.settings.side);
+          $this.thfloat('resize',data.settings.side,options);
       }
 
       $this.data(ns, data);
@@ -411,6 +440,8 @@ $*/
   };
 
   $.fn.thfloat = function(method) {
+    
+    
     if (methods[method])
       return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
     else if (typeof method === 'object' || !method)
