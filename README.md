@@ -47,7 +47,6 @@ http://rommelsantor.com/jquery/thfloat (v0.3)
 ## Version History 
 ```
    Ver 0.4 - 2012-05-01 - Niko Roberts
-              http://www.nikoroberts.com
               Modified to animate the floating header
               
    Ver 0.3 - 2011-04-29 - Rommel Santor
