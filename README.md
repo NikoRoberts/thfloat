@@ -3,8 +3,8 @@ plugin for jQuery (modified)
 http://rommelsantor.com/jquery/thfloat (v0.3)
 
 ## Author(s):
- *Rommel Santor (http://rommelsantor.com)
- *Niko Roberts (http://www.nikoroberts.com)
+ * Rommel Santor (http://rommelsantor.com)
+ * Niko Roberts (http://www.nikoroberts.com)
 
  This plugin allows you to float a table's <thead> or <tfoot> keeping it
  in view when it would normally be scrolled out of view.
