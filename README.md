@@ -81,7 +81,8 @@ http://rommelsantor.com/jquery/thfloat (v0.3)
  * if you have any others, let me know
 
 
-## Methods 
+## Methods
+```
             .thfloat([options])
             .thfloat('init', [options]) // initialize THFloat on a new jQuery object
                         options : see "Options" below
@@ -93,7 +94,7 @@ http://rommelsantor.com/jquery/thfloat (v0.3)
                         side : "head" or "foot"; defaults to both
 
             .thfloat('destroy') // remove THFloat instance from jQuery object
-
+```
 
 ## Options 
    side - the block of the table that is to be floated
@@ -116,6 +117,7 @@ http://rommelsantor.com/jquery/thfloat (v0.3)
  
 
 ## Overridable Events
+```
    onShow(table, block) - triggered just after a floating block is created
      table : the floating <table> holding the block and its content
      block : the temporary <thead> or <tfoot> containing the content being floated
@@ -123,9 +125,11 @@ http://rommelsantor.com/jquery/thfloat (v0.3)
    onHide(table, block) - triggered as the floating block is about to be destroyed
      table : the floating <table> holding the block and its content
      block : the temporary <thead> or <tfoot> containing the content being floated
- 
+ ```
 
   CSS Styles:
+  
+ ```
    .thfloat-table
      class is added to the cloned, floating <table> holding the cloned <thead>/<tfoot>
  
@@ -136,11 +140,12 @@ http://rommelsantor.com/jquery/thfloat (v0.3)
    #thfloathead - if side "head" and table has no id
    #thfloatfoot - if side "foot" and table has no id
      id is assigned to the floating table holding the fixed <thead> or <tfoot>
-
+```
 
 ## Example
-   ###HTML
-   ----
+   **HTML**
+   
+   ```
      <!-- import jQuery from google: http://code.google.com/apis/libraries/devguide.html#jquery -->
      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
      <script type="text/javascript" src="./jquery.thfloat.js"></script>
@@ -152,14 +157,18 @@ http://rommelsantor.com/jquery/thfloat (v0.3)
          <tfoot>...a row of footer cells...</tfoot>
        </table>
      </div>
+   ```
  
-  ###CSS
-  ---
+  **CSS**
+  
+  ```
    #thfloathead-floater { border-bottom: 2px solid black; }
    #thfloatfoot-floater { border-top: 2px solid black; }
+ ```
  
-  ###Javascript
-   ----------
+  **Javascript**
+  
+  ```
      // make both the <thead> and <tfoot> float
      $("#floater")
        .thfloat({
@@ -175,4 +184,4 @@ http://rommelsantor.com/jquery/thfloat (v0.3)
  
      // destroy just the <tfoot> floater
      $("#floater").thfloat('destroy', 'foot');
- 
+ ```
