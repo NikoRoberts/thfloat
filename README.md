@@ -6,7 +6,7 @@ http://rommelsantor.com/jquery/thfloat (v0.3)
  * Rommel Santor (http://rommelsantor.com)
  * Niko Roberts (http://www.nikoroberts.com)
 
- This plugin allows you to float a table's <thead> or <tfoot> keeping it in view when it would normally be scrolled out of view.
+ This plugin allows you to float a table's thead or tfoot keeping it in view when it would normally be scrolled out of view.
 
 ## Licence
  Copyright (c) 2011 by Rommel Santor <rommel at rommelsantor dot com>
@@ -32,9 +32,9 @@ http://rommelsantor.com/jquery/thfloat (v0.3)
 
 ## Description
    The THFloat plugin for jQuery allows you to automatically float (or affix)
-   either a given table's <thead>, <tfoot>, or both at the top or bottom of a
+   either a given table's thead, tfoot, or both at the top or bottom of a
    scrolling container parent/ancestor so that they stay in view even though
-   the table's <tbody> contents have been scrolled out of the visible area.
+   the table's tbody contents have been scrolled out of the visible area.
  
    This was developed and is very handy for long data tables with many columns,
    as it allows users to always know which column contains which value without
@@ -99,8 +99,8 @@ http://rommelsantor.com/jquery/thfloat (v0.3)
 ```
 side - the block of the table that is to be floated
    default: "head"
-   "head" for <thead>
-   "foot" for <tfoot>
+   "head" for thead
+   "foot" for tfoot
  
 attachment - the scrolling container to which the floated block is attached
    default: window
@@ -119,19 +119,19 @@ onHide - see "Overridable Events" below
 ## Overridable Events
 ```
 onShow(table, block) - triggered just after a floating block is created
-  table : the floating <table> holding the block and its content
-  block : the temporary <thead> or <tfoot> containing the content being floated
+  table : the floating table holding the block and its content
+  block : the temporary thead or tfoot containing the content being floated
  
 onHide(table, block) - triggered as the floating block is about to be destroyed
-  table : the floating <table> holding the block and its content
-  block : the temporary <thead> or <tfoot> containing the content being floated
+  table : the floating table holding the block and its content
+  block : the temporary thead or tfoot containing the content being floated
 ```
 
   CSS Styles:
   
 ```
 .thfloat-table
-  class is added to the cloned, floating <table> holding the cloned <thead>/<tfoot>
+  class is added to the cloned, floating table holding the cloned thead / tfoot
  
 .thfloat
   class is added to each <thead>/<tfoot> while it is floated
@@ -139,7 +139,7 @@ onHide(table, block) - triggered as the floating block is about to be destroyed
 #thfloat[head|foot]-[table_id] (default; used if source table has an id)
 #thfloathead - if side "head" and table has no id
 #thfloatfoot - if side "foot" and table has no id
-  id is assigned to the floating table holding the fixed <thead> or <tfoot>
+  id is assigned to the floating table holding the fixed thead or tfoot
 ```
 
 ## Example
