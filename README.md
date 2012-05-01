@@ -3,8 +3,8 @@ plugin for jQuery (modified)
 http://rommelsantor.com/jquery/thfloat (v0.3)
 
 ## Author(s):
- Rommel Santor (http://rommelsantor.com)
- Niko Roberts (http://www.nikoroberts.com)
+ *Rommel Santor (http://rommelsantor.com)
+ *Niko Roberts (http://www.nikoroberts.com)
 
  This plugin allows you to float a table's <thead> or <tfoot> keeping it
  in view when it would normally be scrolled out of view.
@@ -83,105 +83,106 @@ http://rommelsantor.com/jquery/thfloat (v0.3)
 
 ## Methods
 ```
-            .thfloat([options])
-            .thfloat('init', [options]) // initialize THFloat on a new jQuery object
-                        options : see "Options" below
+.thfloat([options])
+  .thfloat('init', [options]) // initialize THFloat on a new jQuery object
+    options : see "Options" below
 
-            .thfloat('resize', [side]) /* force the floating block to resize itself and each cell contained within to match the parent table; useful utility if you modify the original table contents and want to sync it with the floater */
-                        side : "head" or "foot"; defaults to both
+.thfloat('resize', [side]) /* force the floating block to resize itself and each cell contained within to match the parent table; useful utility if you modify the original table contents and want to sync it with the floater */
+  side : "head" or "foot"; defaults to both
 
-            .thfloat('refresh', [side]) /* force the floating block to refresh itself, as if the container has scrolled; useful for tables in blocks that toggle visibility */
-                        side : "head" or "foot"; defaults to both
+.thfloat('refresh', [side]) /* force the floating block to refresh itself, as if the container has scrolled; useful for tables in blocks that toggle visibility */
+  side : "head" or "foot"; defaults to both
 
-            .thfloat('destroy') // remove THFloat instance from jQuery object
+.thfloat('destroy') // remove THFloat instance from jQuery object
 ```
 
-## Options 
-   side - the block of the table that is to be floated
-     default: "head"
-     "head" for <thead>
-     "foot" for <tfoot>
+## Options
+```
+side - the block of the table that is to be floated
+   default: "head"
+   "head" for <thead>
+   "foot" for <tfoot>
  
-   attachment - the scrolling container to which the floated block is attached
-     default: window
-     string selector, DOM object, or jQuery object; 
+attachment - the scrolling container to which the floated block is attached
+   default: window
+   string selector, DOM object, or jQuery object; 
  
-   sticky - force the floating block visible even when source block is in view
-             (but not if the table is out of view entirely, of course)
-     default: false
-     boolean
+sticky - force the floating block visible even when source block is in view
+         (but not if the table is out of view entirely, of course)
+  default: false
+  boolean
  
-   onShow - see "Overridable Events" below
+onShow - see "Overridable Events" below
  
-   onHide - see "Overridable Events" below
- 
+onHide - see "Overridable Events" below
+```
 
 ## Overridable Events
 ```
-   onShow(table, block) - triggered just after a floating block is created
-     table : the floating <table> holding the block and its content
-     block : the temporary <thead> or <tfoot> containing the content being floated
+onShow(table, block) - triggered just after a floating block is created
+  table : the floating <table> holding the block and its content
+  block : the temporary <thead> or <tfoot> containing the content being floated
  
-   onHide(table, block) - triggered as the floating block is about to be destroyed
-     table : the floating <table> holding the block and its content
-     block : the temporary <thead> or <tfoot> containing the content being floated
- ```
+onHide(table, block) - triggered as the floating block is about to be destroyed
+  table : the floating <table> holding the block and its content
+  block : the temporary <thead> or <tfoot> containing the content being floated
+```
 
   CSS Styles:
   
- ```
-   .thfloat-table
-     class is added to the cloned, floating <table> holding the cloned <thead>/<tfoot>
+```
+.thfloat-table
+  class is added to the cloned, floating <table> holding the cloned <thead>/<tfoot>
  
-   .thfloat
-     class is added to each <thead>/<tfoot> while it is floated
+.thfloat
+  class is added to each <thead>/<tfoot> while it is floated
  
-   #thfloat[head|foot]-[table_id] (default; used if source table has an id)
-   #thfloathead - if side "head" and table has no id
-   #thfloatfoot - if side "foot" and table has no id
-     id is assigned to the floating table holding the fixed <thead> or <tfoot>
+#thfloat[head|foot]-[table_id] (default; used if source table has an id)
+#thfloathead - if side "head" and table has no id
+#thfloatfoot - if side "foot" and table has no id
+  id is assigned to the floating table holding the fixed <thead> or <tfoot>
 ```
 
 ## Example
-   **HTML**
+**HTML**
    
-   ```
-     <!-- import jQuery from google: http://code.google.com/apis/libraries/devguide.html#jquery -->
-     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-     <script type="text/javascript" src="./jquery.thfloat.js"></script>
+```
+<!-- import jQuery from google: http://code.google.com/apis/libraries/devguide.html#jquery -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="./jquery.thfloat.js"></script>
  
-     <div id="scroller" style="height: 100px; overflow: auto;">
-       <table id="floater">
-         <thead>...a row of header cells...</thead>
-         <tbody>...a bunch of content rows...</tbody>
-         <tfoot>...a row of footer cells...</tfoot>
-       </table>
-     </div>
-   ```
+<div id="scroller" style="height: 100px; overflow: auto;">
+   <table id="floater">
+      <thead>...a row of header cells...</thead>
+      <tbody>...a bunch of content rows...</tbody>
+      <tfoot>...a row of footer cells...</tfoot>
+   </table>
+</div>
+```
  
-  **CSS**
+**CSS**
   
-  ```
-   #thfloathead-floater { border-bottom: 2px solid black; }
-   #thfloatfoot-floater { border-top: 2px solid black; }
- ```
+```
+#thfloathead-floater { border-bottom: 2px solid black; }
+#thfloatfoot-floater { border-top: 2px solid black; }
+```
  
-  **Javascript**
+**Javascript**
   
-  ```
-     // make both the <thead> and <tfoot> float
-     $("#floater")
-       .thfloat({
-         side : "head",
-         attachment : "#scroller"
-       })
-       .thfloat({
-         side : "foot",
-         attachment : "#scroller"
-       });
+```
+// make both the <thead> and <tfoot> float
+$("#floater")
+  .thfloat({
+     side : "head",
+     attachment : "#scroller"
+  })
+  .thfloat({
+     side : "foot",
+     attachment : "#scroller"
+   });
  
-     // ... do some stuff ...
+   // ... do some stuff ...
  
-     // destroy just the <tfoot> floater
-     $("#floater").thfloat('destroy', 'foot');
+// destroy just the <tfoot> floater
+$("#floater").thfloat('destroy', 'foot');
  ```
