@@ -45,6 +45,7 @@ http://rommelsantor.com/jquery/thfloat (v0.3)
    jQuery v1.4 or better
  
 ## Version History 
+```
    Ver 0.4 - 2012-05-01 - Niko Roberts
               http://www.nikoroberts.com
               Modified to animate the floating header
@@ -67,7 +68,7 @@ http://rommelsantor.com/jquery/thfloat (v0.3)
                Fixed "return;" bug in init()
    Ver 0.1 - 2011-03-01 - Rommel Santor
              Initial Release
- 
+```
 ## Tested 
  *  Mozilla (Firefox 3+)
  *  Webkit (Chrome 9+, Safari for Windows 5+)
